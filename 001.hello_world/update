@@ -1,2 +1,4 @@
+#!/bin/sh
+
 npm run build && \
 rsync -avz public/* root@laozi.in:/var/www/laozi/

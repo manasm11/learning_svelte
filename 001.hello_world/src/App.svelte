@@ -1,13 +1,30 @@
 <script>
-	export let name;
+	import Goodbye from "./Goodbye.svelte";
+	const name = "Bro";
+	const channel = "<h3>MyChannel izzzz OSSUM!!!</h3>";
+	const id = "headingId";
+	const disabled = true;
+	const success = true;
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h2 class="underlined">Undelined H2</h2>
+	<h1 {id}>Hello {name}!</h1>
+	<div class:success>{@html channel}</div>
+	<button {disabled}>BUTTON 1 !!!</button>
+	<button>Change Color</button>
+	<Goodbye someName="Bruther !!!"/>
 </main>
 
 <style>
+	.underlined {
+		text-decoration: underline;
+	}
+
+	.success {
+		color: olivedrab;
+	}
+
 	main {
 		text-align: center;
 		padding: 1em;
