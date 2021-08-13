@@ -1,24 +1,51 @@
-<header>
-    <h1>MeetUs</h1>
-</header>
+<script>
+    import Header from "./UI/Header.svelte";
+    import meetups_data from "./DummyData/meetups";
+    import MeetupGrid from "./Meetups/MeetupGrid.svelte";
+    import FormControl from "./Meetups/FormControl.svelte";
+    import Button from './UI/Button.svelte'
+
+    let meetups = [...meetups_data];
+
+    let form_data = {
+        id: "",
+        title: "",
+        subtitle: "",
+        address: "",
+        contactEmail: "",
+        imageUrl: "",
+        description: "",
+    };
+
+    function addMeetup() {
+        form_data.id = Math.random().toString();
+        meetups = [{ ...form_data, id: Math.random().toString() }, ...meetups];
+        for (const k in form_data) {
+            form_data[k] = "";
+        }
+    }
+</script>
+
+<Header />
+
+<main>
+    <form on:submit|preventDefault={addMeetup}>
+        {#each Object.keys(form_data) as form}
+            <FormControl type={form} bind:value={form_data[form]} />
+        {/each}
+        <Button>Save</Button>
+    </form>
+    <MeetupGrid {meetups} />
+</main>
 
 <style>
-    header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 4rem;
-        background: #cf0056;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+    main {
+        margin-top: 5rem;
     }
 
-    h1 {
-        color: white;
-        font-family: 'Roboto Slab', serif;
-        margin: 0;
+    form {
+        width: 30rem;
+        max-width: 90%;
+        margin: auto;
     }
 </style>

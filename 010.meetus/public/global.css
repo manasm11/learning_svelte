@@ -67,3 +67,12 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+a {
+	text-decoration: inherit;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: inherit;
+}
