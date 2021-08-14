@@ -1,13 +1,35 @@
 <script>
     export let type;
     export let value;
+    export let validators;
+    export let valid = false
+    $: valid = isValid && touched
+    let isValid = true;
+
+
+    let touched = false || type === 'id';
+
+    $: {
+        for (let i = 0; i < validators.length; i++) {
+            if (!touched) {
+                isValid = true;
+                break;
+            }
+            if (!validators[i](value)) {
+                isValid = false;
+                break;
+            }
+            isValid = true;
+        }
+    }
+
     const label = {
         title: "Title",
         subtitle: "Subtitle",
         address: "Address",
         imageUrl: "Image URL",
         contactEmail: "Email",
-        id: '',
+        id: "",
         description: "Description",
     };
 </script>
@@ -15,18 +37,47 @@
 <div class="form-control">
     <label for={type}>{label[type]}</label>
     {#if type === "description"}
-        <textarea id={type} rows="3" bind:value />
+        <textarea
+            id={type}
+            rows="3"
+            on:blur={() => (touched = true)}
+            class:invalid={!isValid}
+            bind:value
+        />
     {:else if type === "contactEmail"}
-        <input type="email" id={type} bind:value />
+        <input
+            type="email"
+            class:invalid={!isValid}
+            on:blur={() => (touched = true)}
+            id={type}
+            bind:value
+        />
     {:else if type === "id"}
-        <div style="display: none;"></div>
+        <div style="display: none;" />
     {:else}
-        <input type="text" id={type} bind:value />
+        <input
+            type="text"
+            on:blur={() => (touched = true)}
+            class:invalid={!isValid}
+            id={type}
+            bind:value
+        />
+    {/if}
+    {#if !isValid}
+        <invalid-message> Invalid </invalid-message>
     {/if}
 </div>
 
-
 <style>
+    .invalid {
+        border-color: red;
+        background-color: rgb(255, 240, 240);
+    }
+
+    invalid-message {
+        color: red;
+        font-size: 0.9rem;
+    }
 
     input,
     textarea {

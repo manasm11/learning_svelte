@@ -1,8 +1,9 @@
 <script>
     export let mode=""
+    export let disabled = false
 </script>
 
-<button class={mode} on:click>
+<button class={mode} {disabled} on:click>
     <slot>--no-slot-provided--</slot>
 </button>
 
