@@ -2,7 +2,7 @@
     export let mode=""
 </script>
 
-<button class={mode}>
+<button class={mode} on:click>
     <slot>--no-slot-provided--</slot>
 </button>
 

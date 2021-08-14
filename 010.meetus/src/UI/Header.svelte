@@ -9,7 +9,7 @@
         top: 0;
         left: 0;
         height: 4rem;
-        background: #cf0056;
+        background: var(--primary);
         display: flex;
         justify-content: center;
         align-items: center;

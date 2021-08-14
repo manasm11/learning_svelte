@@ -1,51 +1,41 @@
 <script>
+    // IMPORTS
+    import EditMeetup from "./Meetups/EditMeetup.svelte";
     import Header from "./UI/Header.svelte";
     import meetups_data from "./DummyData/meetups";
     import MeetupGrid from "./Meetups/MeetupGrid.svelte";
-    import FormControl from "./Meetups/FormControl.svelte";
-    import Button from './UI/Button.svelte'
+    import Button from "./UI/Button.svelte";
 
+    // VARIABLES
     let meetups = [...meetups_data];
+    let editMode;
 
-    let form_data = {
-        id: "",
-        title: "",
-        subtitle: "",
-        address: "",
-        contactEmail: "",
-        imageUrl: "",
-        description: "",
-    };
-
-    function addMeetup() {
+    // FUNCTIONS
+    function addMeetup(event) {
+        const form_data = event.detail;
         form_data.id = Math.random().toString();
         meetups = [{ ...form_data, id: Math.random().toString() }, ...meetups];
-        for (const k in form_data) {
-            form_data[k] = "";
-        }
+        editMode = undefined;
     }
 </script>
 
 <Header />
 
 <main>
-    <form on:submit|preventDefault={addMeetup}>
-        {#each Object.keys(form_data) as form}
-            <FormControl type={form} bind:value={form_data[form]} />
-        {/each}
-        <Button>Save</Button>
-    </form>
-    <MeetupGrid {meetups} />
+    <center>
+        <Button on:click={() => (editMode = "add")}>Add New Meetup</Button>
+    </center>
+    {#if editMode === "add"}
+        <EditMeetup
+            on:addmeetup={addMeetup}
+            on:cancel={() => (editMode = null)}
+        />
+    {/if}
+    <MeetupGrid bind:meetups />
 </main>
 
 <style>
     main {
         margin-top: 5rem;
-    }
-
-    form {
-        width: 30rem;
-        max-width: 90%;
-        margin: auto;
     }
 </style>

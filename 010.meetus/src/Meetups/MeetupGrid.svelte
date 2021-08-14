@@ -2,11 +2,19 @@
     import MeetupItem from "./MeetupItem.svelte";
 
     export let meetups;
+
+    function handleFavorite(event) {
+        const obj = {...meetups.find(m=>m.id==event.detail)}
+        obj.isFavorite = !obj.isFavorite
+        const newMeetups = [...meetups]
+        newMeetups[meetups.findIndex(m=>m.id==event.detail)] = obj
+        meetups = newMeetups
+    }
 </script>
 
 <section id="meetups">
     {#each meetups as meetup(meetup.id)}
-        <MeetupItem {...meetup}/>
+        <MeetupItem on:favorite={handleFavorite} {...meetup}/>
     {/each}
 </section>
 

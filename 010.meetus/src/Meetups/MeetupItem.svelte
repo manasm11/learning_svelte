@@ -1,19 +1,30 @@
 <script>
     // IMPORTS
-    import Button from '../UI/Button.svelte'
+    import Button from "../UI/Button.svelte";
+    import { createEventDispatcher } from "svelte";
+    import Badge from "../UI/Badge.svelte";
+    import { text } from "svelte/internal";
+    const dispatch = createEventDispatcher();
 
     // PROPS
+    export let id;
     export let title = "--no-title-provided--";
     export let subtitle = "--no-subtitle-provided--";
     export let description = "--no-description-provided--";
     export let imageUrl = "--no-imageUrl-provided--";
     export let address = "--no-address-provided--";
     export let contactEmail = "--no-contactEmail-provided--";
+    export let isFavorite = false;
 </script>
 
 <article>
     <header>
-        <h1>{title}</h1>
+        <h1>
+            {title}
+            {#if isFavorite}
+                <Badge text="FAVOURITE" />
+            {/if}
+        </h1>
         <h2>{subtitle}</h2>
         <p>{address}</p>
     </header>
@@ -27,8 +38,12 @@
         <Button>
             <a href="mailto:{contactEmail}">Contact</a>
         </Button>
-        <Button mode="outline">Show Details</Button>
-        <Button>Favourite</Button>
+        <Button
+            on:click={() => dispatch("favorite", id)}
+            mode="outline {isFavorite || 'success'}"
+            >{isFavorite ? "Unfavourite" : "Favourite"}</Button
+        >
+        <Button>Show Details</Button>
     </footer>
 </article>
 
