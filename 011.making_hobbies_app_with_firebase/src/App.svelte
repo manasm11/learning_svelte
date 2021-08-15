@@ -1,30 +1,42 @@
 <script>
-	export let name;
+	import { onMount } from "svelte";
+
+	import hobbies from "./hobbies.store";
+
+	let hobbyInput;
+	let loading = false;
+
+	onMount(async () => {
+		loading = true;
+		hobbies.updateFromAPI().then(() => (loading = false));
+	});
+
+	function addHobby() {
+		loading = true;
+		hobbies.addHobby(hobbyInput.value).then(() => {
+			hobbyInput.value = "";
+			loading = false;
+		});
+	}
+
+	function deleteHobby(id) {
+		loading = true;
+		hobbies.deleteHobby(id).then(() => (loading = false));
+	}
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<input type="text" bind:this={hobbyInput} />
+<button on:click={addHobby}>Add Hobby</button>
+<div>
+	{#if loading}
+		Loading...
+	{:else}
+		<ul>
+			{#each $hobbies as hobby (hobby.id)}
+				<li on:click={deleteHobby.bind(this, hobby.id)}>
+					{hobby.value}
+				</li>
+			{/each}
+		</ul>
+	{/if}
+</div>
