@@ -1,0 +1,103 @@
+{
+    "App": {
+        "uses": [
+            "EditMeetup",
+            "Header",
+            "MeetupGrid",
+            "Button",
+            "MeetupDetail"
+        ]
+    },
+    "Modal": {
+        "uses": [
+            "Button"
+        ],
+        "dispatches": [
+            "cancel",
+            "close"
+        ],
+        "usedBy": [
+            "EditMeetup"
+        ]
+    },
+    "Header": {
+        "usedBy": [
+            "App"
+        ]
+    },
+    "Button": {
+        "forwards": [
+            "click"
+        ],
+        "usedBy": [
+            "Modal",
+            "MeetupItem",
+            "App",
+            "EditMeetup",
+            "MeetupDetail"
+        ]
+    },
+    "Badge": {
+        "usedBy": [
+            "MeetupItem"
+        ]
+    },
+    "MeetupDetail": {
+        "uses": [
+            "Button"
+        ],
+        "dispatches": [
+            "closedetail"
+        ],
+        "usedBy": [
+            "App"
+        ]
+    },
+    "MeetupGrid": {
+        "uses": [
+            "MeetupItem"
+        ],
+        "forwards": [
+            "showdetail",
+            "edit"
+        ],
+        "usedBy": [
+            "App"
+        ]
+    },
+    "EditMeetup": {
+        "uses": [
+            "Modal",
+            "FormControl",
+            "Button"
+        ],
+        "dispatches": [
+            "cancel",
+            "addmeetup"
+        ],
+        "forwards": [
+            "cancel"
+        ],
+        "usedBy": [
+            "App"
+        ]
+    },
+    "MeetupItem": {
+        "uses": [
+            "Button",
+            "Badge"
+        ],
+        "dispatches": [
+            "showdetail",
+            "edit"
+        ],
+        "usedBy": [
+            "MeetupGrid"
+        ]
+    },
+    "FormControl": {
+        "usedBy": [
+            "EditMeetup"
+        ]
+    }
+}
