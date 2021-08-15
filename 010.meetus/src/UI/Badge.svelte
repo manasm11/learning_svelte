@@ -1,7 +1,9 @@
 <script>
+    import {fade} from 'svelte/transition'
+    import {cubicIn} from 'svelte/easing'
     export let text=' ';
 </script>
-<span>{text}</span>
+<span transition:fade={{duration: 200, easing:cubicIn}}>{text}</span>
 
 <style>
     span {

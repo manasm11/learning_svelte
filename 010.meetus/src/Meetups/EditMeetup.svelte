@@ -17,14 +17,25 @@
 
     let are_valid = {
         id: true,
-        title: false,
-        subtitle: false,
-        address: false,
-        contactEmail: false,
-        imageUrl: false,
-        description: false,
+        title: true,
+        subtitle: true,
+        address: true,
+        contactEmail: true,
+        imageUrl: true,
+        description: true,
         isFavorite: true
     }
+
+    // let are_valid = {
+    //     id: true,
+    //     title: false,
+    //     subtitle: false,
+    //     address: false,
+    //     contactEmail: false,
+    //     imageUrl: false,
+    //     description: false,
+    //     isFavorite: true
+    // }
 
     $: console.log(disabled)
     $: disabled = (()=>{
@@ -74,7 +85,7 @@
                 type={form}
                 bind:value={form_data[form]}
                 validators={form_validars[form]}
-                bind:valid={are_valid[form]}
+                bind:validr={are_valid[form]}
             />
         {/each}
     </form>

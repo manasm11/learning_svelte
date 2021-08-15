@@ -1,6 +1,7 @@
 <script>
     import Button from "../UI/Button.svelte";
     import meetups from "./meetups-store";
+    import {slide, fade} from 'svelte/transition'
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
@@ -10,7 +11,7 @@
         $meetups.find((m) => m.id == id);
 </script>
 
-<section>
+<section in:fade={{delay:400, duration:0}}>
     <div class="image">
         <img src={imageUrl} alt="" />
     </div>

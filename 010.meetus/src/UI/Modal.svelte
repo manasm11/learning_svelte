@@ -1,5 +1,6 @@
 <script>
     import Button from "./Button.svelte";
+    import {scale, fade} from 'svelte/transition';
     import {createEventDispatcher} from 'svelte'
     const dispatch = createEventDispatcher();
 
@@ -11,9 +12,9 @@
 
 </script>
 
-<div class="modal-backdrop" on:click={cancelEdit} />
+<div transition:fade class="modal-backdrop" on:click={cancelEdit} />
 
-<div class="modal">
+<div transition:scale={{duration:500}} class="modal">
     <h1>
         {title}
     </h1>

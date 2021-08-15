@@ -1,6 +1,7 @@
 <script>
     // IMPORTS
     import Button from "../UI/Button.svelte";
+    import { scale } from 'svelte/transition';
     import { createEventDispatcher } from "svelte";
     import Badge from "../UI/Badge.svelte";
     import meetups from "./meetups-store";
@@ -18,7 +19,7 @@
     export let isFavorite = false;
 </script>
 
-<article>
+<article transition:scale>
     <header>
         <h1>
             {title}
