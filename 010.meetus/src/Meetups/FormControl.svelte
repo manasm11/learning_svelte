@@ -2,12 +2,11 @@
     export let type;
     export let value;
     export let validators;
-    export let valid = false
-    $: valid = isValid && touched
+    export let valid = false;
+    $: valid = isValid && touched;
     let isValid = true;
 
-
-    let touched = false || type === 'id';
+    let touched = false || type === "id";
 
     $: {
         for (let i = 0; i < validators.length; i++) {
@@ -30,43 +29,44 @@
         imageUrl: "Image URL",
         contactEmail: "Email",
         id: "",
+        isFavorite: "",
         description: "Description",
     };
 </script>
 
-<div class="form-control">
-    <label for={type}>{label[type]}</label>
-    {#if type === "description"}
-        <textarea
-            id={type}
-            rows="3"
-            on:blur={() => (touched = true)}
-            class:invalid={!isValid}
-            bind:value
-        />
-    {:else if type === "contactEmail"}
-        <input
-            type="email"
-            class:invalid={!isValid}
-            on:blur={() => (touched = true)}
-            id={type}
-            bind:value
-        />
-    {:else if type === "id"}
-        <div style="display: none;" />
-    {:else}
-        <input
-            type="text"
-            on:blur={() => (touched = true)}
-            class:invalid={!isValid}
-            id={type}
-            bind:value
-        />
-    {/if}
-    {#if !isValid}
-        <invalid-message> Invalid </invalid-message>
-    {/if}
-</div>
+{#if type !== "id" && type !== "isFavorite"}
+    <div class="form-control">
+        <label for={type}>{label[type]}</label>
+        {#if type === "description"}
+            <textarea
+                id={type}
+                rows="3"
+                on:blur={() => (touched = true)}
+                class:invalid={!isValid}
+                bind:value
+            />
+        {:else if type === "contactEmail"}
+            <input
+                type="email"
+                class:invalid={!isValid}
+                on:blur={() => (touched = true)}
+                id={type}
+                bind:value
+            />
+        {:else}
+            <input
+                type="text"
+                on:blur={() => (touched = true)}
+                class:invalid={!isValid}
+                id={type}
+                bind:value
+            />
+        {/if}
+        {#if !isValid}
+            <invalid-message> Invalid </invalid-message>
+        {/if}
+    </div>
+{/if}
 
 <style>
     .invalid {

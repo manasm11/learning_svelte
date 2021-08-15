@@ -1,0 +1,17 @@
+{
+    "Modal": [
+        "cancel",
+        "close"
+    ],
+    "MeetupDetail": [
+        "closedetail"
+    ],
+    "EditMeetup": [
+        "cancel",
+        "addmeetup"
+    ],
+    "MeetupItem": [
+        "edit",
+        "showdetail"
+    ]
+}

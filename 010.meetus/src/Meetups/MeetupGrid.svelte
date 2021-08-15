@@ -1,16 +1,11 @@
 <script>
     import meetups from './meetups-store'
     import MeetupItem from "./MeetupItem.svelte";
-
-    function handleFavorite(event) {
-        meetups.toggleFavourite(event.detail)
-        
-    }
 </script>
 
 <section id="meetups">
     {#each $meetups as meetup(meetup.id)}
-        <MeetupItem {...meetup} on:showdetail/>
+        <MeetupItem {...meetup} on:showdetail on:edit/>
     {/each}
 </section>
 

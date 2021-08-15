@@ -23,6 +23,7 @@
         contactEmail: false,
         imageUrl: false,
         description: false,
+        isFavorite: true
     }
 
     $: console.log(disabled)
@@ -43,6 +44,7 @@
         contactEmail: [isNotEmpty, isValidEmail],
         imageUrl: [isNotEmpty],
         description: [isNotEmpty],
+        isFavorite: []
     };
 
     function resetFormData() {
@@ -54,6 +56,7 @@
             contactEmail: "",
             imageUrl: "",
             description: "",
+            isFavorite: "",
         };
     }
 

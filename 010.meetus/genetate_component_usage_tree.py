@@ -5,11 +5,11 @@ isImportStatement = lambda line: 'import ' in line and '.svelte' in line and ' f
 
 uses = defaultdict(list)
 
-for root, dirs, files in os.walk('src', topdown=True):
+for root, dirs, files in os.walk('src'):
     for file in files:
         if '.svelte' in file:
             filepath = os.path.join(root, file)
-            fname = file.split('.')[0]
+            fname = file.split('.')[0].strip()
             with open(filepath) as f:
                 for line in f.readlines():
                     line = line.strip()
@@ -17,7 +17,7 @@ for root, dirs, files in os.walk('src', topdown=True):
                         relativePath = line.split()[-1]
                         filename = relativePath.split('/')[-1]
                         componentName = filename.split('.')[0]
-                        uses[fname].append(componentName)
+                        uses[fname].append(componentName.strip())
 
 import json
 

@@ -13,7 +13,8 @@
 
     // FUNCTIONS
     function closeModal() {
-        editMode = undefined;
+        editMode = null;
+        pageData = {}
     }
 
     function showDetail(event) {
@@ -24,6 +25,11 @@
     function closeDetail() {
         page = "overview";
         pageData = {};
+    }
+
+    function edit(event) {
+        editMode = 'edit'
+        pageData = {id: event.detail.id}
     }
 </script>
 
@@ -36,8 +42,10 @@
         </center>
         {#if editMode === "add"}
             <EditMeetup on:addmeetup={closeModal} on:cancel={closeModal} />
+        {:else if editMode === 'edit'}
+            <EditMeetup on:addmeetup={closeModal} on:cancel={closeModal} id={pageData.id}/>
         {/if}
-        <MeetupGrid on:showdetail={showDetail} />
+        <MeetupGrid on:showdetail={showDetail} on:edit={edit} />
     {:else}
         <MeetupDetail id={pageData.id} on:closedetail={closeDetail} />
     {/if}
