@@ -52,7 +52,8 @@
     }
 
     function submitForm() {
-        dispatch("addmeetup", form_data);
+        meetups.addMeetup(form_data)
+        dispatch("addmeetup");
         resetFormData();
     }
 </script>
