@@ -1,0 +1,27 @@
+{
+    "App": [
+        "EditMeetup",
+        "Header",
+        "MeetupGrid",
+        "Button",
+        "MeetupDetail"
+    ],
+    "Modal": [
+        "Button"
+    ],
+    "MeetupDetail": [
+        "Button"
+    ],
+    "MeetupGrid": [
+        "MeetupItem"
+    ],
+    "EditMeetup": [
+        "FormControl",
+        "Button",
+        "Modal"
+    ],
+    "MeetupItem": [
+        "Button",
+        "Badge"
+    ]
+}

@@ -3,11 +3,17 @@
     import Button from "../UI/Button.svelte";
     import Modal from "../UI/Modal.svelte";
     import { createEventDispatcher } from "svelte";
+    import meetups from './meetups-store'
     import { isNotEmpty, isValidEmail } from "../helpers/validators";
     const dispatch = createEventDispatcher();
 
+    export let id = null;
+
     let form_data;
     resetFormData();
+    if(id){
+        form_data = $meetups.find(m=>m.id === id)
+    }
 
     let are_valid = {
         id: true,
