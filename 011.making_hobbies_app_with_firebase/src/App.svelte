@@ -1,19 +1,19 @@
 <script>
-	import { onMount } from "svelte";
-
 	import hobbies from "./hobbies.store";
 
+	let gotUsname = false;
+	let username = "";
 	let hobbyInput;
 	let loading = false;
 
-	onMount(async () => {
+	function loadData() {
 		loading = true;
-		hobbies.updateFromAPI().then(() => (loading = false));
-	});
+		hobbies.updateFromAPI(username).then(() => (loading = false));
+	}
 
 	function addHobby() {
 		loading = true;
-		hobbies.addHobby(hobbyInput.value).then(() => {
+		hobbies.addHobby(hobbyInput.value, username).then(() => {
 			hobbyInput.value = "";
 			loading = false;
 		});
@@ -21,10 +21,17 @@
 
 	function deleteHobby(id) {
 		loading = true;
-		hobbies.deleteHobby(id).then(() => (loading = false));
+		hobbies.deleteHobby(id, username).then(() => (loading = false));
+	}
+
+	function login() {
+		gotUsname = true
+		loadData()
 	}
 </script>
 
+{#if gotUsname}
+	
 <input type="text" bind:this={hobbyInput} />
 <button on:click={addHobby}>Add Hobby</button>
 <div>
@@ -40,3 +47,10 @@
 		</ul>
 	{/if}
 </div>
+{:else}
+	<label>
+		Enter username
+		<input type="text" bind:value={username}>
+	</label>
+	<button on:click={login}>Login</button>
+{/if}

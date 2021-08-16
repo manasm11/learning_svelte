@@ -1,14 +1,15 @@
 import { writable } from "svelte/store";
 
-let username = 'test'
+var username = 'test'
 const hobbies = writable([])
 const BASE_URL = 'https://svelte-hobbies-firebase-default-rtdb.firebaseio.com'
-const hobbiesURL = `${BASE_URL}/${username}/hobbies.json`
+const hobbiesURL = () => `${BASE_URL}/${username}/hobbies.json`
 const getHobbyDeleteURL = id => `${BASE_URL}/${username}/hobbies/${id}.json`
 
 const updateFromAPI = async (uname) => {
     if (uname) username = uname
-    let res = await fetch(hobbiesURL)
+    console.log(uname)
+    let res = await fetch(hobbiesURL())
     let data = await res.json()
     let h = []
     for (const k in data) h.push({ id: k, value: data[k] })
@@ -20,7 +21,7 @@ export default {
     updateFromAPI,
     addHobby: async (hobby, uname) => {
         if (uname) username = uname
-        let res = await fetch(hobbiesURL, {
+        let res = await fetch(hobbiesURL(), {
             method: 'POST',
             body: JSON.stringify(hobby),
             headers: {
