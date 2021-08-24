@@ -13,7 +13,7 @@
 
 <div>
     <NewItem on:newitem={e=>items.addItem(e.detail.text)}/>
-    {#each $items as item (item.id)}
+    {#each $items && items.sorted() as item (item.id)}
         <Item
             id={item.id}
             text={item.text}

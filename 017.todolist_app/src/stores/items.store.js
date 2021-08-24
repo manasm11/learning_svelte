@@ -1,8 +1,7 @@
 import { writable, get } from 'svelte/store'
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
 
 let items = writable([])
-let _count = 0;
 
 async function saveToAPI() {
     localStorage.setItem('todo-list', JSON.stringify(get(items)))
@@ -24,5 +23,6 @@ export default {
         return temp;
     }) || saveToAPI(),
     deleteItem: id => items.update(l => l.filter(i => i.id !== id)) || saveToAPI(),
-    addItem: text => items.update(l => l.concat({id: v4(), text, completed: false})) || saveToAPI(),
+    addItem: text => items.update(l => [{ id: v4(), text, completed: false }, ...l]) || saveToAPI(),
+    sorted: () => get(items).sort((a,b) => a.completed - b.completed),
 }
