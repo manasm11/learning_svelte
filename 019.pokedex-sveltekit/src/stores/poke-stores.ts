@@ -15,7 +15,6 @@ async function getPokemons() {
         }
     })
     pokemons.set(pokemons_)
-    console.log(pokemons_)
 }
 getPokemons()
 
