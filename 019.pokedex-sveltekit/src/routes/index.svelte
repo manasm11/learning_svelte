@@ -5,7 +5,9 @@
 
 	let search = '';
 
-    $: filteredPokemons = $pokemons.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
+	$: filteredPokemons = $pokemons
+		.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
+		.slice(0, 400);
 </script>
 
 <svelte:head><title>Pokedex</title></svelte:head>
