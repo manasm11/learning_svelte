@@ -26,9 +26,11 @@
 <style>
     h1 {
         text-decoration: underline;
+		font-family: sans-serif;
     }
 	p {
 		font-size: 1.5rem;
         color: #222;
+		font-family: monospace;
 	}
 </style>

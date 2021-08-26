@@ -5,9 +5,9 @@
 <div>
 	<a href={`pokemon/${pokemon.id}`}>
 		<center>
-			<img  src={pokemon.image} alt={pokemon.name} />
+			<img src={pokemon.image} alt={pokemon.name} />
 		</center>
-		<h2>{pokemon.id}. {pokemon.name}</h2>
+		<h2>{pokemon.name}</h2>
 	</a>
 </div>
 
@@ -26,6 +26,7 @@
 
 	h2 {
 		margin-top: 0;
+		font-family: monospace;
 	}
 
 	img {

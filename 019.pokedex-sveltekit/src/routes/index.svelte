@@ -30,5 +30,6 @@
 		justify-content: center;
 		font-size: 3rem;
 		text-decoration: underline;
+		font-family: sans-serif;
 	}
 </style>
