@@ -1,23 +1,34 @@
 <script context="module">
-    export async function load({page}) {
-        const id = page.params.id;
-        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-        const res = await fetch(url);
-        const pokemon = await res.json();
-        return {props: {pokemon}}
-    }
+	export async function load({ page }) {
+		const id = page.params.id;
+		const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+		const res = await fetch(url);
+		const pokemon = await res.json();
+		return { props: { pokemon } };
+	}
 </script>
 
 <script>
-    import {capitalizeFirstLetter} from '$utilities/string'
-    export let pokemon
+	import { capitalizeFirstLetter } from '$utilities/string';
+	export let pokemon = {};
+	const type = pokemon.types[0].type.name;
 </script>
 
-<h1>{capitalizeFirstLetter(pokemon.name)}</h1>
+<center>
+	<h1>{capitalizeFirstLetter(pokemon.name)}</h1>
+	<img draggable="false" loading="lazy" src={pokemon.sprites['front_default']} alt={pokemon.name} />
+	<p>type: <b>{capitalizeFirstLetter(type)}</b></p>
+	<p>height: <b>{pokemon.height}</b></p>
+	<p>weight: <b>{pokemon.weight}</b></p>
+    <a href="/"><button>Back</button></a>
+</center>
 
 <style>
     h1 {
-        display: flex;
-        justify-content: center;
+        text-decoration: underline;
     }
+	p {
+		font-size: 1.5rem;
+        color: #222;
+	}
 </style>
