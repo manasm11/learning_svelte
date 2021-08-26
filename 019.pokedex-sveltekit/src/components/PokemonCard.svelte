@@ -3,7 +3,7 @@
 </script>
 
 <div>
-	<a href={`pokemon/${pokemon.id}`}>
+	<a href={`/pokemon/${pokemon.id}`}>
 		<center>
 			<img src={pokemon.image} alt={pokemon.name} />
 		</center>
