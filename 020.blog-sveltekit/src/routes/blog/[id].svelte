@@ -1,3 +1,14 @@
+<script context="module">
+    export async function load({page:{params}}) {
+        console.log(params);
+        return {
+            props: {
+                id: params.id
+            }
+        }
+    }
+</script>
+
 <h1>First Post</h1>
 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus repellendus dolores perferendis, quos quisquam obcaecati perspiciatis nesciunt illum at sed quaerat deleniti autem, dolorum, alias praesentium. Quisquam cum ut ipsum in, dolore temporibus pariatur facere aliquid ducimus impedit deserunt nesciunt ipsam laboriosam mollitia similique ea, nostrum debitis voluptatem consequuntur. Deleniti.</p>
 
