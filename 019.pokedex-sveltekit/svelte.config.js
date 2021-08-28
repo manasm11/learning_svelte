@@ -1,7 +1,7 @@
 import preprocess from 'svelte-preprocess';
 import path from 'path';
-// import adapter from '@sveltejs/adapter-static';
-import vercel from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-static';
+// import vercel from '@sveltejs/adapter-vercel';
 
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -20,13 +20,13 @@ const config = {
 				}
 			}
 		},
-		// adapter: adapter({
-		// 	// default options are shown
-		// 	pages: 'build',
-		// 	assets: 'build',
-		// 	fallback: null
-		// }),
-		adapter: vercel()
+		adapter: adapter({
+			// default options are shown
+			pages: 'build',
+			assets: 'build',
+			fallback: null
+		}),
+		// adapter: vercel()
 	}
 };
 
