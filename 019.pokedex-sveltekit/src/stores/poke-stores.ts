@@ -18,6 +18,4 @@ async function getPokemons() {
 }
 getPokemons()
 
-export default {
-    ...pokemons,
-}
+export default pokemons
