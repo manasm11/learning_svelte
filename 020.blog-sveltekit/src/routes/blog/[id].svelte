@@ -19,7 +19,8 @@
 	export let post, user;
 </script>
 
-<h1>{post.title}</h1>
-<p>{post.body}</p>
-
-<p>- Written by: <a href="/author/{user.id}"><b>{user.name}</b></a></p>
+<div class="card">
+	<h1>{post.title}</h1>
+	<p>{post.body}</p>
+	<p>- Written by: <a href="/author/{user.id}"><b>{user.name}</b></a></p>
+</div>

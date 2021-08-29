@@ -6,3 +6,23 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.card {
+    border: 1px solid #ccc;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.card.clickable {
+    cursor: pointer;
+    box-shadow: 2px 2px 10px #ccc;
+}
+
+.card.clickable:hover {
+    background-color: #f1f1f1;
+}
+
+.card.clickable:active {
+    box-shadow: 0.5px 0.5px 1px #ccc;
+}

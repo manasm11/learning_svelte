@@ -1,22 +1,22 @@
 <script context="module">
 	export async function load({ fetch, page: { params } }) {
 		if (!Number(params.authorId)) return;
-        const [resUser, resPosts] = await Promise.all([
-            fetch(`https://jsonplaceholder.typicode.com/users/${params.authorId}`),
-            fetch('https://jsonplaceholder.typicode.com/posts'),
-        ])
-		
+		const [resUser, resPosts] = await Promise.all([
+			fetch(`https://jsonplaceholder.typicode.com/users/${params.authorId}`),
+			fetch('https://jsonplaceholder.typicode.com/posts')
+		]);
+
 		return {
 			props: {
 				user: await resUser.json(),
-				posts: (await resPosts.json()).filter(p=>p.userId == params.authorId)
+				posts: (await resPosts.json()).filter((p) => p.userId == params.authorId)
 			}
 		};
 	}
 </script>
 
 <script>
-import Posts from "$lib/Posts.svelte";
+	import Posts from '$lib/Posts.svelte';
 
 	export let user, posts;
 </script>
@@ -27,5 +27,4 @@ import Posts from "$lib/Posts.svelte";
 	<p>{user.email}</p>
 </center>
 
-<Posts {posts}/>
-
+<Posts {posts} />
