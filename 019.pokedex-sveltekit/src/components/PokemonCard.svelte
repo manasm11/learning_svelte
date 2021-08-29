@@ -2,14 +2,14 @@
 	export let pokemon;
 </script>
 
-<div>
-	<a href={`/pokemon/${pokemon.id}`}>
+<a sveltekit:prefetch href={`/pokemon/${pokemon.id}`}>
+	<div>
 		<center>
 			<img src={pokemon.image} alt={pokemon.name} />
 		</center>
 		<h2>{pokemon.name}</h2>
-	</a>
-</div>
+	</div>
+</a>
 
 <style>
 	div {

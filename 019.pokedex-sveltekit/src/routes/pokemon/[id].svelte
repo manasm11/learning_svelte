@@ -20,7 +20,7 @@
 	<p>type: <b>{capitalizeFirstLetter(type)}</b></p>
 	<p>height: <b>{pokemon.height}</b></p>
 	<p>weight: <b>{pokemon.weight}</b></p>
-    <a href="/"><button>Back</button></a>
+    <a sveltekit:prefetch href="/"><button>Back</button></a>
 </center>
 
 <style>

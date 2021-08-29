@@ -5,9 +5,9 @@
 	import { paginate, LightPaginationNav } from 'svelte-paginate';
 
 	let search = '';
-	let items = $pokemons.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+	$: items = $pokemons.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
 	let currentPage = 1;
-	let pageSize = 80;
+	let pageSize = 48;
 	$: paginatedItems = paginate({
 		items,
 		pageSize,
