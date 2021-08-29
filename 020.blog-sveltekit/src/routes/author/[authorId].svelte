@@ -16,7 +16,7 @@
 </script>
 
 <script>
-import Post from "$lib/Post.svelte";
+import Posts from "$lib/Posts.svelte";
 
 	export let user, posts;
 </script>
@@ -27,7 +27,5 @@ import Post from "$lib/Post.svelte";
 	<p>{user.email}</p>
 </center>
 
-{#each posts as post}
-	<Post {post}/>
-{/each}
+<Posts {posts}/>
 
