@@ -5,7 +5,7 @@
 	import { paginate, LightPaginationNav } from 'svelte-paginate';
 
 	let search = '';
-	$:items = $pokemons.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+	$:items = $pokemons && pokemons.searchResult(search);
 	$: {
 		currentPage = 1;
 		search

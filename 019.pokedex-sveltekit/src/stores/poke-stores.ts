@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { capitalizeFirstLetter } from '$utilities/string';
 
 const pokemons = writable([])
@@ -18,4 +18,7 @@ async function getPokemons() {
 }
 getPokemons()
 
-export default pokemons
+export default {
+    ...pokemons,
+    searchResult: search => search ? get(pokemons).filter((p) => p.name.toLowerCase().includes(search.toLowerCase())) : get(pokemons)
+}
