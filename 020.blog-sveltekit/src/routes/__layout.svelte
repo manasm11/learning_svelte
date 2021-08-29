@@ -1,6 +1,10 @@
-<script>
-    import Nav from '$lib/Nav.svelte'
-</script>
-<Nav/>
+<div>
+	<slot />
+</div>
 
-<slot></slot>
+<style>
+    div {
+        max-width: 800px;
+        margin: 50px auto;
+    }
+</style>
